@@ -6,7 +6,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report
 from sklearn.metrics import roc_curve, roc_auc_score
 import matplotlib.pyplot as plt
-from imblearn.under_sampling import SMOTE
+from imblearn.over_sampling import SMOTE
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.pipeline import Pipeline
 from xgboost import XGBClassifier
@@ -76,14 +76,14 @@ tresh = 0.3
 y_pred_custom = (y_probs > tresh).astype(int)
 
 xgb = XGBClassifier(
-    scale_pose_wheit = 10,
+    scale_pos_weight = 10,
     use_label_encoder = False,
     eval_metric = "logloss",
 )
 xgb.fit(X_train, y_train)
 y_pred_xgb = xgb.predict(X_test)
 
-importancias = xgb.features_importances()
+importancias = xgb.feature_importances()
 plt.bar (range(len (importancias )), importancias)
 plt.title("Importancia das Variavéis")
 plt.show()
