@@ -109,5 +109,3 @@ print (classification_report(y_test, y_pred))
 print (classification_report (y_test,y_pred_custom))
 print ("Melhores Modelos", grid.best_params_)
 
-#
-
